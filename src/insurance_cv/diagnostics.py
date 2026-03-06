@@ -1,7 +1,7 @@
 """
 Diagnostics for temporal cross-validation splits.
 
-Validating splits before running a model is not optional — temporal leakage
+Validating splits before running a model is not optional - temporal leakage
 in a CV setup produces optimistic results that won't hold prospectively, and
 the error is silent. These functions make the split structure visible and
 checkable.
@@ -46,7 +46,7 @@ def temporal_leakage_check(
 
     Raises
     ------
-    Does not raise — callers should inspect the return value and decide whether
+    Does not raise - callers should inspect the return value and decide whether
     to proceed.
     """
     errors: list[str] = []

@@ -3,7 +3,7 @@ Walk-forward cross-validation for a UK motor pricing model.
 
 This example shows how to use insurance-cv with a CatBoost frequency model
 on synthetic motor data. The key point is that the CV results here actually
-reflect prospective performance — the test sets are always later than the
+reflect prospective performance - the test sets are always later than the
 training data, and a 3-month IBNR buffer prevents partially-developed claims
 from polluting the test evaluation.
 
@@ -58,7 +58,7 @@ splits = walk_forward_split(
     min_train_months=18,   # Need at least 1.5 years to capture seasonality
     test_months=6,
     step_months=6,
-    ibnr_buffer_months=3,  # 3-month buffer — standard for motor
+    ibnr_buffer_months=3,  # 3-month buffer - standard for motor
 )
 
 print(f"\nGenerated {len(splits)} walk-forward folds\n")
@@ -83,7 +83,7 @@ print()
 # Fit a frequency model per fold
 # ---------------------------------------------------------------------------
 # Uncomment the CatBoost section if catboost is installed.
-# This section shows the pattern — InsuranceCV plugs directly into sklearn CV.
+# This section shows the pattern - InsuranceCV plugs directly into sklearn CV.
 # ---------------------------------------------------------------------------
 
 # try:
@@ -114,7 +114,7 @@ print()
 #     print(f"Mean Poisson deviance across {len(scores)} folds: {-scores.mean():.4f} (+/- {scores.std():.4f})")
 #
 # except ImportError:
-#     print("CatBoost not installed — skipping model fit.")
+#     print("CatBoost not installed - skipping model fit.")
 
 # ---------------------------------------------------------------------------
 # Manual fold iteration (if you need exposure-weighted evaluation)

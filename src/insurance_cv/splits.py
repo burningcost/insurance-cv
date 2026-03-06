@@ -17,7 +17,7 @@ Insurance data has three time axes that are easy to conflate:
   - Policy inception date: when cover started. Determines which rating factors
     apply and which experience year the policy belongs to.
   - Accident date: when the loss event occurred. This is what IBNR (Incurred
-    But Not Reported) buffers protect against — recent accident dates have
+    But Not Reported) buffers protect against - recent accident dates have
     incomplete claim development.
   - Reporting / valuation date: when the snapshot was taken.
 
@@ -28,7 +28,7 @@ Standard k-fold ignores all of these. It is wrong for insurance because:
   2. Seasonality (weather, holiday periods) means random folds will mix summer
      and winter in both train and test, making the model look better than it
      deserves on a real prospective test.
-  3. Policy year boundaries matter for rate changes — training on mixed rate
+  3. Policy year boundaries matter for rate changes - training on mixed rate
      years without accounting for that structure inflates apparent lift.
 """
 
@@ -148,7 +148,7 @@ def walk_forward_split(
     """
     Generate walk-forward (expanding window) temporal splits.
 
-    The training window grows with each fold — the oldest data is always
+    The training window grows with each fold - the oldest data is always
     included. This is the standard choice for insurance pricing because the
     underlying risk doesn't change so fast that old data is harmful; using
     an expanding window gives more stable frequency and severity estimates.
@@ -166,7 +166,7 @@ def walk_forward_split(
         Date column (policy inception date or accident date).
     min_train_months : int
         Minimum number of months required before the first fold is generated.
-        Default 12 — less than a full year is rarely enough to capture
+        Default 12 - less than a full year is rarely enough to capture
         seasonality in motor or home lines.
     test_months : int
         Width of each test window in months.
@@ -250,7 +250,7 @@ def policy_year_split(
     Generate splits aligned to policy years (1 Jan – 31 Dec boundaries).
 
     Policy-year alignment matters when you have rate changes at year boundaries
-    — you don't want the model to see a post-rate-change test period trained on
+    - you don't want the model to see a post-rate-change test period trained on
     pre-rate-change data without a clean year boundary to separate them.
 
     Parameters
@@ -331,7 +331,7 @@ def accident_year_split(
     Generate splits based on accident year with development sufficiency filter.
 
     In long-tail lines, accident years with less than ``min_development_months``
-    of observed development should not be used as test targets — you'd be
+    of observed development should not be used as test targets - you'd be
     evaluating the model on claims that are largely IBNR. This splitter
     identifies which accident years have sufficient development and generates
     one fold per qualifying test year.

@@ -311,7 +311,7 @@ class TestAccidentYearSplit:
         """Most recent accident year should not appear as test when dev is low."""
         rng = np.random.default_rng(99)
         base = make_liability_df(end="2022-12-31")
-        # Recent rows with only 1 month of development — immature
+        # Recent rows with only 1 month of development - immature
         recent_dates = pd.date_range("2023-01-01", "2023-06-30", freq="ME")
         recent = pl.DataFrame(
             {

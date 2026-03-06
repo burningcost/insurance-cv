@@ -14,7 +14,7 @@ K-fold cross-validation randomly partitions data into folds. For insurance prici
 
 **Temporal leakage.** Insurance claims develop over time. A motor claim reported 18 months after the accident may still be open. If you train on 2022 data and test on 2020 data, your model sees future development patterns that wouldn't have been available at the 2020 pricing date. K-fold does this routinely.
 
-**IBNR contamination.** For any accident date near your training cutoff, some claims will not yet be reported or fully developed (Incurred But Not Reported). If those claims appear in your training set, the model learns from targets that are systematically understated. The fix is a development buffer — exclude claims with accident dates in the N months before your test window from both training and test sets.
+**IBNR contamination.** For any accident date near your training cutoff, some claims will not yet be reported or fully developed (Incurred But Not Reported). If those claims appear in your training set, the model learns from targets that are systematically understated. The fix is a development buffer - exclude claims with accident dates in the N months before your test window from both training and test sets.
 
 **Seasonal confounding.** Motor claims peak in winter. Property claims follow weather cycles. If a randomly-selected test fold contains a disproportionate share of December policies, the test loss will look different to what you'd see prospectively. A prospective evaluation should test on a contiguous future period with the same seasonal mix the model will face in deployment.
 
@@ -108,7 +108,7 @@ policy_year_split(
 ) -> list[TemporalSplit]
 ```
 
-Splits aligned to 1 Jan – 31 Dec policy year boundaries. Use this when your rate changes are annual and you want clean year-aligned train/test boundaries. There is no IBNR buffer because the year boundary is treated as a natural development cutoff — if you need one, adjust `n_years_train` to leave a gap year.
+Splits aligned to 1 Jan – 31 Dec policy year boundaries. Use this when your rate changes are annual and you want clean year-aligned train/test boundaries. There is no IBNR buffer because the year boundary is treated as a natural development cutoff - if you need one, adjust `n_years_train` to leave a gap year.
 
 ### `accident_year_split`
 
